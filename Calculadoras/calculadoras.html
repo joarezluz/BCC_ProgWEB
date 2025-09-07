@@ -1,0 +1,405 @@
+<html>
+
+<head>
+    <title>Calculadoras</title>
+    <style>
+        /* Remove as setas do input type="number" */
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+            /*tive que pesquisar pra descobrir isso*/
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: large;
+        }
+
+        .calc1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #000000;
+            background-color: #0080ff;
+            border-color: #0080ff;
+            width: 300px;
+            height: 200px;
+            margin: auto;
+            border-radius: 10px;
+
+        }
+
+        .calc1 input {
+
+            margin: 2px;
+            padding: 2px;
+            border-radius: 3px;
+            border-color: #0080ff;
+
+            &:active {
+                border-color: #0040ff;
+            }
+        }
+
+        .calc1 h1 {
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .calc1 button {
+            margin: 2px;
+            padding: 2px;
+            width: 80px;
+            height: 30px;
+            font-size: medium;
+            border-radius: 5px;
+            border-color: #0080ff;
+            background-color: #0040ff;
+            color: #ffffff;
+        }
+
+        .calc1 button:active {
+            background-color: #ff1e00;
+        }
+
+        .calc1 select {
+            margin: 2px;
+            padding: 2px;
+            border-radius: 3px;
+            border-color: #0080ff;
+        }
+
+        .calc2 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 10px;
+            margin: 20px;
+            padding: 5px;
+            border: 1px solid #000000;
+            border-color: #000000;
+            width: 350px;
+            height: 250px;
+            border-radius: 10px;
+        }
+
+        .calc2 input {
+            margin: 2px;
+            size: 3;
+            width: 37px;
+            height: 37px;
+            background-color: #eee;
+
+            &:disabled {
+                margin: 2px;
+                size: 10;
+                width: 80px;
+                height: 37px;
+                background-color: #eee;
+                border-color: #ccc;
+            }
+
+
+        }
+
+        .calc2 h1 {
+            color: #000000;
+
+        }
+
+        .calc2_somar {
+
+            size: 3;
+            width: 37px;
+            height: 37px;
+            background-color: #ff8000;
+            border-color: #ff8000;
+            color: #ffffff;
+            font-size: 10px;
+
+            &:active {
+                background-color: #ee5000;
+                border-color: #ee5000;
+            }
+        }
+
+        .cal2_limpar {
+            size: 3;
+            width: 80px;
+            height: 37px;
+            background-color: #ff8000;
+            border-color: #ff8000;
+            color: #ffffff;
+            font-size: 10px;
+
+            &:active {
+                background-color: #ee5000;
+                border-color: #ee5000;
+            }
+        }
+
+        .calc3 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 10px;
+            margin: 20px;
+            padding: 5px;
+            width: 200px;
+            height: 350px;
+            border: 5px solid grey;
+            background-color: darkgray;
+
+        }
+
+
+        .cal3_resultado {
+            margin: 2px;
+            font-size: 36px;
+            width: 180;
+            height: 50px;
+            background-color: #eee;
+
+
+        }
+
+        .calcRow {
+            display: flex;
+            flex-direction: row;
+
+
+        }
+
+        .calcRow button {
+            margin: 2px;
+            padding: 10px;
+            width: 40px;
+            height: 40px;
+            font-size: medium;
+            border-radius: 10px;
+            border-color: #0080ff;
+            background-color: #0040ff;
+            color: #ffffff;
+
+            &:active {
+                background-color: #ff1e00;
+            }
+        }
+    </style>
+
+    <head>
+
+    </head>
+
+<body>
+    <div class="calc1">
+        <h1>Calculadora 1</h1>
+        <!--calculadora simples!-->
+        <input type="number" placeholder="0" id="n1">
+        <select id="op"> <!--testando select!-->
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+
+        <input type="number" placeholder="0" id="n2">
+        <button onclick="calcular()">Calcular</button>
+
+        <input type="number" id="res" disabled> <!--desabilitado!-->
+    </div>
+
+    <div class="calc2">
+        <h1>Calculadora 2</h1>
+        <!--calculadora  da tarefa-->
+        <div>
+            <input type="number" id="n_1">
+            <input type="number" id="n_2">
+            <button class="calc2_somar" id="c2_S" onclick="calcular2_1()">+</button>
+            =
+            <input type="number" id="r_1" disabled>
+            <button class="cal2_limpar" id="limpar_1" onclick="limpar_1()">Limpar</button>
+
+        </div>
+        <div>
+            <input type="number" id="n2_1">
+            <input type="number" id="n2_2">
+            <button class="calc2_somar" id="c2_Su" onclick="calcular2_2()">-</button>
+            =
+            <input type="number" id="r_2" disabled>
+            <button class="cal2_limpar" id="limpar_2" onclick="limpar_2()">Limpar</button>
+
+        </div>
+        <div>
+            <input type="number" id="n3_1">
+            <input type="number" id="n3_2">
+            <button class="calc2_somar" id="c2_M" onclick="calcular2_3()">*</button>
+            =
+            <input type="number" id="r_3" disabled>
+            <button class="cal2_limpar" id="limpar_3" onclick="limpar_3()">Limpar</button>
+
+        </div>
+        <div>
+            <input type="number" id="n4_1">
+            <input type="number" id="n4_2">
+            <button class="calc2_somar" id="c2_D" onclick="calcular2_4()">/</button>
+            =
+            <input type="number" id="r_4" disabled>
+            <button class="cal2_limpar" id="limpar_4" onclick="limpar_4()">Limpar</button>
+
+        </div>
+    </div>
+    <div class="calc3">
+        <h1>Calculadora 3</h1>
+        <input type="text" placeholder="0" id="r_5" disabled class="cal3_resultado">
+        <div class="calcRow">
+            <button id="b7" onclick="calular3()">7</button>
+            <button id="b8" onclick="calular3()">8</button>
+            <button id="b9" onclick="calular3()">9</button>
+            <button id="b/" onclick="calular3()">/</button>
+        </div>
+        <div class="calcRow">
+            <button id="b4" onclick="calular3()">4</button>
+            <button id="b5" onclick="calular3()">5</button>
+            <button id="b6" onclick="calular3()">6</button>
+            <button id="b*" onclick="calular3()">*</button>
+        </div>
+        <div class="calcRow">
+            <button id="b1" onclick="calular3()">1</button>
+            <button id="b2" onclick="calular3()">2</button>
+            <button id="b3" onclick="calular3()">3</button>
+            <button id="b-" onclick="calular3()">-</button>
+        </div>
+        <div class="calcRow">
+            <button id="b0" onclick="calular3()">0</button>
+            <button id="b." onclick="calular3()">CA</button>
+            <button id="bC" onclick="calular3()">=</button>
+            <button id="b+" onclick="calular3()">+</button>
+        </div>
+
+
+        <script>
+            function calcular() {
+                n1 = parseFloat(document.querySelector('#n1').value);
+                n2 = parseFloat(document.querySelector('#n2').value);
+                op = document.querySelector('#op');
+                res = document.querySelector('#res');
+                if (op.value == '+') {
+                    res.value = n1 + n2;
+                } else if (op.value == '-') {
+                    res.value = n1 - n2;
+                } else if (op.value == '*') {
+                    res.value = n1 * n2;
+                } else if (op.value == '/' && n2 != 0) {
+                    res.value = n1 / n2;
+                } else {
+                    res.value = 0;
+                }
+
+            }
+            function calcular2_1() {
+                n1 = parseFloat(document.querySelector('#n_1').value);
+                n2 = parseFloat(document.querySelector('#n_2').value);
+                res = document.querySelector('#r_1');
+                res.value = n1 + n2;
+            }
+            function calcular2_2() {
+                n1 = parseFloat(document.querySelector('#n2_1').value);
+                n2 = parseFloat(document.querySelector('#n2_2').value);
+                res = document.querySelector('#r_2');
+                res.value = n1 - n2;
+            }
+            function calcular2_3() {
+                n1 = parseFloat(document.querySelector('#n3_1').value);
+                n2 = parseFloat(document.querySelector('#n3_2').value);
+                res = document.querySelector('#r_3');
+                res.value = n1 * n2;
+            }
+            function calcular2_4() {
+                n1 = parseFloat(document.querySelector('#n4_1').value);
+                n2 = parseFloat(document.querySelector('#n4_2').value);
+                res = document.querySelector('#r_4');
+                if (n2 != 0) {
+                    res.value = n1 / n2;
+                } else {
+                    res.value = 0;
+                }
+            }
+            function limpar_1() {
+                n1 = document.querySelector('#n_1');
+                n2 = document.querySelector('#n_2');
+                res = document.querySelector('#r_1');
+                res.value = n1.value = n2.value = '';
+            }
+            function limpar_2() {
+                n1 = document.querySelector('#n2_1');
+                n2 = document.querySelector('#n2_2');
+                res = document.querySelector('#r_2');
+                res.value = n1.value = n2.value = '';
+            }
+            function limpar_3() {
+                n1 = document.querySelector('#n3_1');
+                n2 = document.querySelector('#n3_2');
+                res = document.querySelector('#r_3');
+                res.value = n1.value = n2.value = '';
+            }
+            function limpar_4() {
+                n1 = document.querySelector('#n4_1');
+                n2 = document.querySelector('#n4_2');
+                res = document.querySelector('#r_4');
+                res.value = n1.value = n2.value = '';
+            }
+
+            function calular3() {
+                r = document.querySelector('#r_5');
+                if (event.target.id == 'b1') {
+                    r.value = r.value + '1';
+                } else if (event.target.id == 'b2') {
+                    r.value = r.value + '2';
+                } else if (event.target.id == 'b3') {
+                    r.value = r.value + '3';
+                } else if (event.target.id == 'b4') {
+                    r.value = r.value + '4';
+                } else if (event.target.id == 'b5') {
+                    r.value = r.value + '5';
+                } else if (event.target.id == 'b6') {
+                    r.value = r.value + '6';
+                } else if (event.target.id == 'b7') {
+                    r.value = r.value + '7';
+                } else if (event.target.id == 'b8') {
+                    r.value = r.value + '8';
+                } else if (event.target.id == 'b9') {
+                    r.value = r.value + '9';
+                } else if (event.target.id == 'b/') {
+                    r.value = r.value + '/';
+                } else if (event.target.id == 'b*') {
+                    r.value = r.value + '*';
+                } else if (event.target.id == 'b-') {
+                    r.value = r.value + '-';
+                } else if (event.target.id == 'b+') {
+                    r.value = r.value + '+';
+                } else if (event.target.id == 'b0') {
+                    r.value = r.value + '0';
+                } else if (event.target.id == 'b.') {
+                    r.value = '';
+                } else if (event.target.id == 'bC') {
+                    r.value = eval(r.value);                    
+                }
+            }
+
+
+
+
+
+
+        </script>
+
+</body>
+
+</html>
